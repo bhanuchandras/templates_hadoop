@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Define the URL of the Hadoop jobhistory API.
 url = "http://localhost:8080/api/v1/jobs"
@@ -8,13 +8,13 @@ url = "http://localhost:8080/api/v1/jobs"
 def get_time_range(time_range):
     now = datetime.now()
     if time_range == "1h":
-        start_time = now - datetime.timedelta(hours=1)
+        start_time = now - timedelta(hours=1)
         end_time = now
     elif time_range == "3h":
-        start_time = now - datetime.timedelta(hours=3)
+        start_time = now - timedelta(hours=3)
         end_time = now
     elif time_range == "24h":
-        start_time = now - datetime.timedelta(days=1)
+        start_time = now - timedelta(days=1)
         end_time = now
     else:
         raise ValueError("Invalid time range")
