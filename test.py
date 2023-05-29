@@ -2,7 +2,7 @@ import requests
 from datetime import datetime, timedelta
 
 # Define the URL of the Hadoop jobhistory API.
-url = "http://localhost:8080/api/v1/jobs"
+#url = "http://localhost:8080/api/v1/jobs"
 
 # Define the function to get the start and end times of the time range to query.
 def get_time_range(time_range):
@@ -20,7 +20,7 @@ def get_time_range(time_range):
         raise ValueError("Invalid time range")
 
     return start_time, end_time
-
+start_time, end_time = get_time_range("1h")
 # Make the request to the Hadoop jobhistory API.
 headers = {
     "Accept": "application/json"
@@ -40,7 +40,7 @@ if response.status_code == 200:
 
     # Print the job information.
     for job in jobs:
-        print(job)
+        print(job["apps"]["app"])
 
 else:
     # The request failed.
