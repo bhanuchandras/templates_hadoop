@@ -57,7 +57,14 @@ if response.status_code == 200:
         "job_duration": job["elapsedTime"],
         "job_type": job["applicationType"],
     }, ignore_index=True)
+    # Group the dataframe by job status.
+    grouped_df = df.groupby("job_status")
 
+    # Calculate the percentage of jobs in each status.
+    grouped_df["percentage"] = grouped_df["count"] / len(df) * 100
+
+    # Print the grouped dataframe.
+    print(grouped_df)
 else:
     # The request failed.
     print(response.status_code)
