@@ -1,5 +1,10 @@
 import requests
 from datetime import datetime, timedelta
+import pandas as pd
+
+# Create a pandas dataframe.
+df = pd.DataFrame()
+
 
 # Define the URL of the Hadoop jobhistory API.
 #url = "http://localhost:8080/api/v1/jobs"
@@ -40,7 +45,18 @@ if response.status_code == 200:
 
     # Print the job information.
     for job in jobs["apps"]["app"]:
-        print(job)
+        df = df.append({
+        "job_id": job["id"],
+        "user": job["user"],
+        "queue": job["queue"],
+        "job_name": job["name"],
+        "job_status": job["status"],
+        "job_finalstatus": job["finalstatus"],
+        "job_start_time": job["startedTime"],
+        "job_end_time": job["finishedTime"],
+        "job_duration": job["elapsedTime"],
+        "job_type": job["applicationType"],
+    }, ignore_index=True)
 
 else:
     # The request failed.
