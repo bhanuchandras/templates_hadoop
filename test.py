@@ -39,8 +39,8 @@ if response.status_code == 200:
     jobs = response.json()
 
     # Print the job information.
-    for job in jobs:
-        print(job["apps"]["app"])
+    for job in jobs["apps"]["app"]:
+        print(job)
 
 else:
     # The request failed.
