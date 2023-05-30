@@ -24,7 +24,7 @@ def get_time_range(time_range):
     else:
         raise ValueError("Invalid time range")
 
-    return start_time, end_time
+    return int(start_time.timestamp()*1000), int(end_time.timestamp()*1000)
 start_time, end_time = get_time_range("1h")
 # Make the request to the Hadoop jobhistory API.
 headers = {
@@ -32,8 +32,8 @@ headers = {
 }
 
 params = {
-    "start-time": start_time,
-    "end-time": end_time
+    "startedTimeBegin": start_time,
+    "startedTimeEnd": end_time
 }
 
 response = requests.get(url, headers=headers, params=params)
