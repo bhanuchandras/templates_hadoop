@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Half Donut Chart</title>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<div id="donut"></div>
+<script>
+// Load the Google Charts library
+google.charts.load('current', {'packages':['corechart']});
+
+// Create a data table
+var data = [
+  ['Task', 'Hours'],
+  ['A', 10],
+  ['B', 20]
+];
+
+// Create a chart object
+var chart = new google.visualization.PieChart(document.getElementById('donut'));
+
+// Set the chart options
+chart.options = {
+  pieHole: 0.5,
+  title: 'My Half Donut Chart'
+};
+
+// Draw the chart
+chart.draw(data, chart.options);
+</script>
+</body>
+</html>
